@@ -1,0 +1,68 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Mini Maps — Geofence + Overlay</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Leaflet core (CDN is fine; you can host locally if you prefer) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"/>
+
+  <!-- Leaflet.draw (CDN is fine) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-draw@1.0.4/dist/leaflet.draw.css"/>
+
+  <!-- Local vendor CSS (no CDN for these two) -->
+  <link rel="stylesheet" href="{% static 'minimaps/vendor/leaflet.toolbar.css' %}">
+  <link rel="stylesheet" href="{% static 'minimaps/vendor/leaflet.distortableimage.css' %}">
+
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="{% static 'minimaps/styles.css' %}">
+</head>
+<body>
+  <div id="loaderWarning" style="display:none; background:#b00020; color:#fff; padding:8px 12px; font-weight:600;">
+    DistortableImage plugin failed; using simple overlay fallback.
+  </div>
+
+  <div class="controls">
+    <label style="display:flex; align-items:center; gap:8px;">
+      <span>Overlay image:</span>
+      <input type="file" id="imageUpload" accept="image/*">
+    </label>
+
+    <span class="slider-wrap">
+      <label for="mapBright">Map brightness</label>
+      <input id="mapBright" type="range" min="0.3" max="2" step="0.05" value="1">
+    </span>
+    <span class="slider-wrap">
+      <label for="overlayBright">Overlay brightness</label>
+      <input id="overlayBright" type="range" min="0.3" max="2" step="0.05" value="1">
+    </span>
+
+    <button id="lockMapBtn" type="button">Lock Map</button>
+    <button id="unlockMapBtn" type="button" disabled>Unlock Map</button>
+    <button id="demoOverlayBtn" type="button">Add Demo Overlay</button>
+  </div>
+
+  <div id="map"></div>
+
+  <!-- JS last: ORDER MATTERS -->
+  <!-- Leaflet core + draw (CDN is fine) -->
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+
+  <!-- Local vendor JS (no CDN for these two) -->
+  <script src="{% static 'minimaps/vendor/leaflet.toolbar.js' %}"></script>
+  <script src="{% static 'minimaps/vendor/leaflet.distortableimage.js' %}"></script>
+
+  <!-- App -->
+  <script src="{% static 'minimaps/app.js' %}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
